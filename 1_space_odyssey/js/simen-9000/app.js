@@ -85,26 +85,56 @@
         b. ensure to choose the correct values and datatypes
         c. the droid should be built in your likeness (a human, with human features, 2 arms, legs etc)
     */
-    var isAlive = true;
-    var name = "simen-9000";
-    var hasJetPack = true;
-    var suitColor = "white";
-    var eyes = 2;
-    var eyeColor = "blue";
-    var hairColor = "brown";
-    var legs = 2;
-    var arms = 2;
-    var hands = 2;
-    var ears = 2;
-    var canWalk = true;
-    var canRun = true;
-    var canFly  = false;
-    var hasWeapon = true;
-    var isInGoodMood = true;
+   /*
+ 7. Android Object REFACTOR:::::
 
+ Level 1::::::::::::::
+ Refactor (change) all the variables you have in place that initializes the android into an android object.
+ - Your android needs a head, upperBody, lowerBody & [ anyThingElseYouCanDreamOf ].
+ - Feel free to create any new properties that will further describe your android [ anyThingYouCanDreamOf ].
+ - next update your application to use this newly refactored code
 
+ tip: the console.log that prints the variables of the android will need to be updated
+
+ Level 2::::::::::::::
+ Refactor the planets array to be an array of objects, each object must be its own planet.
+  - next update your application to use this newly refactored code
+*/
+    var simensAndoid = {
+      head: {
+        isAlive: true,
+        eyes: 2,
+        ears: 2,
+        eyeColor: "blue",
+        hairColor: "brown",
+      },
+      upperBody: {
+        hasJetPack: true,
+        suitColor: "white",
+        arms: 2,
+        hands: 2,
+      },
+      lowerBody: {
+        legs: 2,
+        canWalk: true,
+        canRun: true,
+        canFly: false,
+      },
+      superDroid:{
+        hasWeapon: true,
+        isInGoodMood: true,
+      },
+    }
     console.log(".-.-. Booting .-.-.");
-    console.log(name, isAlive, hasJetPack, eyes, eyeColor, hairColor, legs, arms, hands, ears, canWalk, canFly, hasWeapon);
+
+    console.log("head",
+      simensAndoid.head.isAlive, simensAndoid.head.eyes, simensAndoid.head.ears, simensAndoid.head.eyeColor, simensAndoid.head.hairColor);
+    console.log("upperBody",
+    simensAndoid.upperBody.hasJetPack, simensAndoid.upperBody.suitColor, simensAndoid.upperBody.arms, simensAndoid.upperBody.hands);
+    console.log("lowerBody",
+    simensAndoid.lowerBody.legs, simensAndoid.lowerBody.canWalk, simensAndoid.lowerBody.canRun, simensAndoid.lowerBody.canFly);
+    console.log("superDroid",
+    simensAndoid.superDroid.hasWeapon, simensAndoid.superDroid.isInGoodMood);
 
     /*
     2. BROKEN SATELLITE::::::
@@ -120,7 +150,7 @@
     console.log("JetPack NOT enabled, please enable jetPack before doing a space walk");
 
     */
-   if (hasJetPack === true) {
+   if (simensAndoid.upperBody.hasJetPack === true) {
     console.log("JetPack is enabled!!! off I go outside to fix the satellite");
 }
 else {
@@ -249,7 +279,8 @@ ELSE
 if (lunarRadar.isEnabled && lunarRadar.lat && lunarRadar.long){
   console.log("\u{1F91F} looking good " + name + " we are making our descent, now entering approach speed");
 
-  if (lunarRadar.approachSpeed <= 200 && lunarRadar.approachSpeed >= 299){
+
+  if (lunarRadar.approachSpeed <= 200 && lunarRadar.approachSpeed <= 299){
   console.log("\u{269B} well done " + name + " we have touched down safely. Lets get some samples and get heck outta here!");
   } else if(lunarRadar.approachSpeed <= 300){
   console.log("\u{1F627} coming in hot " + name + " decrease pitch!");
@@ -291,3 +322,97 @@ if(lunarRadar.isEnabled && lunarRadar.lat && lunarRadar.long)
       console.log("\u{1F9F1}\u{1F9F1}\u{1F9F1}\u{1F9F1} " + name + " you went down like a ton of bricks, the wrecked remains of the lunar lander can still be seen from earth twinkling in the distance.");
   }
 }
+/*
+ 6. PLANETARY INFO-DASH:::::
+
+ Level 1::::::::::::::
+ Given this array of planets using what you know about how to access data in an arrays index log out the:
+  - Description,
+  - Surface temperature and
+  - Mass
+
+  in the console logs bellow.
+
+  tip: pass your variables into the console.log after comma ,
+*/
+console.log("\u{1F319} PLANETARY INFO-DASH:::::");
+
+var planets = [
+  [ "MERCURY",
+    [
+      "The smallest and fastest planet, Mercury is the closest planet to the Sun and whips around it every 88 Earth days.",
+      "-173 to 427°C",
+      "330,104,000,000,000 billion kg (0.055 x Earth)"
+    ],
+  ],
+  [ "JUPITER",
+    [
+      "Jupiter is a massive planet, twice the size of all other planets combined and has a centuries-old storm that is bigger than Earth.",
+      "-108°C",
+      "1,898,130,000,000,000,000 billion kg (317.83 x Earth)"
+    ],
+  ],
+  [ "EARTH",
+    [
+      "Earth is the third planet from the Sun and the fifth largest planet in the Solar System with the highest density. It is currently the only known location where life is present.",
+      "110 degrees Fahrenheit / 48 degrees Celsius, and the lowest around -126 degrees Fahrenheit / -88 degrees Celsius, maybe even lower",
+      "6.6 sextillion tons"
+    ],
+  ],
+  [ "MARS",
+    [
+      "Mars is the fourth planet from the Sun and the second-smallest planet with a thin atmosphere, having the surface features reminiscent both of the impact craters of the Moon, and the valleys, deserts and polar ice caps of Earth. It is the most widely searched planet for life.",
+      "87 to -5 °C",
+      "641,693,000,000,000 billion kg (0.107 x Earth)"
+    ],
+  ],
+];
+
+console.group(planets[0][0]); // Mercury.
+  console.log("Description: The smallest and fastest planet, Mercury is the closest planet to the Sun and whips around it every 88 Earth days.", );
+  console.log("Surface temperature: -173 to 427°C", );
+  console.log("Mass: 330,104,000,000,000 billion kg (0.055 x Earth)", );
+console.groupEnd();
+
+console.group(planets[1][0]); // Jupiter. (please insert the correct array index to add Earth as a string label to the console, as previous done for Mercury)
+  console.log("Description: Jupiter is a massive planet, twice the size of all other planets combined and has a centuries-old storm that is bigger than Earth.", );
+  console.log("Surface temperature: -108°C", );
+  console.log("Mass: 1,898,130,000,000,000,000 billion kg (317.83 x Earth)", );
+console.groupEnd();
+
+console.group(planets[2][0]); // Earth.
+  console.log("Description: Earth is the third planet from the Sun and the fifth largest planet in the Solar System with the highest density. It is currently the only known location where life is present.", );
+  console.log("Surface temperature: 110 degrees Fahrenheit / 48 degrees Celsius, and the lowest around -126 degrees Fahrenheit / -88 degrees Celsius, maybe even lower", );
+  console.log("Mass: 6.6 sextillion tons", );
+console.groupEnd();
+
+console.group(planets[3][0]); // Mars.
+  console.log("Description: Mars is the fourth planet from the Sun and the second-smallest planet with a thin atmosphere, having the surface features reminiscent both of the impact craters of the Moon, and the valleys, deserts and polar ice caps of Earth. It is the most widely searched planet for life.", );
+  console.log("Surface temperature: 87 to -5 °C", );
+  console.log("Mass: 641,693,000,000,000 billion kg (0.107 x Earth)", );
+console.groupEnd();
+
+/*
+ Level 2::::::::::::::
+ Add 2 New planets of your choosing to the front of the Array : https://nineplanets.org
+*/
+var newPlanet = [
+  "Neptunes",
+  [
+    "is the fourth largest and the farthest planet of the Solar System with the most powerful wind speeds out of all the planets. It is the smallest of the gas giants and is the first planet to be discovered by mathematical predictions in 1846.",
+    "-201 °C",
+    "60,190.03 Earth days (164.79 Earth years)"
+  ]
+];
+var newPlanet1 = [
+
+  "Venus",
+  [
+    "spinning in the opposite direction to most planets, Venus is the hottest planet, and one of the brightest object in the sky.",
+    "462° C",
+    "108,209,475 km (0.73 AU),"
+  ]
+];
+
+planets.unshift(newPlanet);
+planets.unshift(newPlanet1);
